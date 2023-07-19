@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="cache-control" content="no-cache">
+    <title>Suporte OnlyHaters</title>
+    <style>
+        *{
+            font-family: sans-serif;
+        }
+        strong{
+            color: red;
+        }
+        .botao{
+            padding: 1% 1% 1% 1%;
+            border: 1px solid rgb(0, 0, 0) ;
+            margin: 1px 1px 1px 1px;
+            background-color: white;
+            font-size: 100%;
+        }
+        .botao:hover{
+            box-shadow: 1px 1px 3px black;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function mudarDeCor(objeto){
+            document.getElementById(objeto).style.backgroundColor = 'yellow'
+                setTimeout(function(){
+                document.getElementById(objeto).style.backgroundColor = 'white'
+            }, 1000)
+
+        }
+
+    </script>
+    <header>
+        <h1>Suporte</h1>
+        <h2>dicas, instruções e soluções:</h2>
+        <ul>
+        <li><button type="button" class="botao" onclick="mudarDeCor('topico1')">Como faço para participar?</button></li>
+
+        <li><button type="button" class="botao"  onclick="mudarDeCor('topico2')">Por que eu/alguém ainda não aparece?</button></li>
+
+        <li><button type="button" class="botao"  onclick="mudarDeCor('topico3')">Tudo se resolve atualizando a página?</button></li>
+        </ul>
+    </header>
+    <corpo>
+        <h3 id="topico1">Como eu faço para participar?</h3>
+        <p>Simples. Mande sua foto e descrição para o email: onlyhaterscoltec@gmail.com</p>
+        <p><strong>IMPORTANTE:</strong> Só serão aceitas e adicionados perfis cujo o email do remetende seja um email da instituição.</p><p> Para facilitar o trabalho, no campo de assunto do email, digite <strong>perfil</strong>.</p>
+        <h3 id="topico2">Por que eu/alguém ainda não aparece?</h3>
+        <p>O site está em constante atualização, recarregue o site.</p>
+        <h3 id="topico3">Tudo se resolve atualizando a página?</h3>
+        <p><strong>Recomenda-se utilizar o navegador Google Chrome.</strong></p>
+        <p>Não necessariamente. Todos os problemas que podem ocorrer são relacionados ao cache do navegador. Às vezes não é suficiente apenas atualizar a página, e sim, limpar o cache do navegador.</p>
+        <p>O problema do cache tenta ser evitado ao máximo, tanto é que há comandos imbutidos no código do site, para que ele não seja salvo</p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </corpo>
+    <footer>
+        <button class="botao" onclick="location.href='index.html'" style="position: fixed; right: 3%; bottom: 3%;">Voltar</button> 
+    </footer>
+</body>
+</html>

@@ -1,4 +1,9 @@
 <?php
+echo "<style>
+        *{
+            font-family: sans-serif;
+         }
+      </style>";
 #incluindo a database
 include("database.php");
 
@@ -15,37 +20,36 @@ $numLinhas = mysqli_num_rows($numLinhasRES);
 
 
 #for que printa a tabela
-echo "<table>";
-echo "<tr>
-        <td>
-            id
-        </td>
-        
-        <td>
-            votos
-        </td>
-      </tr>
-      <hr>";
-for ($x = 0; $x <= $numLinhas; $x++) {
 
+echo "id &nbsp; votos";
+
+echo "<table>";
+
+for ($x = 0; $x <= $numLinhas; $x++) {
+    
     #id
-    $idSQL = "SELECT id FROM dados WHERE id = $x";
+    $idSQL = "SELECT id FROM dados WHERE id=$x";
     $idRES = mysqli_query($conn, $idSQL);
-    $id = mysqli_fetch_assoc($idRES);
+    $idFetch = mysqli_fetch_assoc($idRES);
+    $idROW = $idFetch["id"];
 
     #votos
-    $votosSQL = "SELECT votos FROM dados WHERE id = $x";
+    $votosSQL = "SELECT votos FROM dados WHERE id=$x";
     $votosRES = mysqli_query($conn, $votosSQL);
-    $votos = mysqli_fetch_assoc($votosRES);
+    $votosFetch = mysqli_fetch_assoc($votosRES);
+    $votosROW = $votosFetch["votos"];
 
     #print da tabela
-    echo "<tr> <td>";
-    echo $idRES;
-    echo "</td> <td>";
-    echo $votosRES;
-    echo "</td> </tr>";
+    echo
+    "<tr>
+        <td>
+        $idROW
+        </td>
 
+        <td>
+        $votosROW
+        </td>
+    </tr>";
   }
-
-echo "</table>"
+echo "</table>";
 ?>

@@ -2,54 +2,49 @@
 echo "<style>
         *{
             font-family: sans-serif;
-         }
+          }
+        .linha{
+          border: 1px solid black;
+          background-color:grey;
+          text-align:center;
+        }
       </style>";
 #incluindo a database
 include("database.php");
 
-#essa página serve como admin, realizando o CRUD
+#essa página serve como admin dos dados da votação, realizando o CRUD
 
-#pré comando
-$numLinhasSQL = "SELECT * FROM dados";
-
-#comando na query
-$numLinhasRES = mysqli_query($conn, $numLinhasSQL);
-
-#numero de inhas
-$numLinhas = mysqli_num_rows($numLinhasRES);
-
+    #número de linhas
+    $SQL = "SELECT * FROM dados";
+    $Res = mysqli_query($conn, $SQL);
+    $numLinhas = mysqli_num_rows($Res);
 
 #for que printa a tabela
-
-echo "id &nbsp; votos";
-
 echo "<table>";
-
+echo "<tr><td>
+      id
+      </td>
+      <td>
+      votos
+      </td></tr>";
 for ($x = 0; $x <= $numLinhas; $x++) {
-    
-    #id
-    $idSQL = "SELECT id FROM dados WHERE id=$x";
-    $idRES = mysqli_query($conn, $idSQL);
-    $idFetch = mysqli_fetch_assoc($idRES);
-    $idROW = $idFetch["id"];
+    #pré comando
+    $SQL = "SELECT * FROM dados WHERE id=$x";
+    #comando
+    $Res = mysqli_query($conn, $SQL);
+    #fetch
+    $Fetch = mysqli_fetch_assoc($Res);
 
-    #votos
-    $votosSQL = "SELECT votos FROM dados WHERE id=$x";
-    $votosRES = mysqli_query($conn, $votosSQL);
-    $votosFetch = mysqli_fetch_assoc($votosRES);
-    $votosROW = $votosFetch["votos"];
-
-    #print da tabela
     echo
-    "<tr>
-        <td>
-        $idROW
-        </td>
-
-        <td>
-        $votosROW
-        </td>
+    "<tr class='linha'>
+    <td>" .
+    $Fetch["id"] .
+    "</td>
+    <td>" .
+    $Fetch["votos"] .
+    "</td>
     </tr>";
   }
 echo "</table>";
+
 ?>

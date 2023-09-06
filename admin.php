@@ -31,15 +31,34 @@
         input::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
-}
+        }
+        .cell{
+          padding:5px;
+        }
+        #confirmar{
+          color:white;
+          background-color:rgb(21, 212, 11);
+          width:100%;
+          height:100%;
+          margin:0px;
+          border:none;
+          padding:6px 6px;
+        }
+        #confirmar:hover{
+          color:white;
+          background-color:rgb(12, 107, 7);
+          width:100%;
+          height:100%;
+          margin:0px;
+          border:none;
+          padding:6px 6px;
+        }
+        #labelid{
+          text-align:right;
+        }
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <?php
 $id = 0;
-function idupdate($x){
-  $id=$x;
-  echo"<script>document.getElementById('labelid').innerText= 'Id: &nbsp; $id'</script>";
-}
 #incluindo a database
 include("database.php");
 
@@ -51,13 +70,16 @@ include("database.php");
     $numLinhas = mysqli_num_rows($Res);
 
 #for que printa a tabela
-echo "<table>
+echo "<form action='admin.php' method='post'> 
+  <table>
   <tr class='linha'><td>
   ID
-  </td><td>
+  </td><td class='cell'>
   Nome
-  </td><td>
+  </td><td class='cell'>
   Votos
+  </td><td class='cell'>
+  Selecione:
   </td></tr>";
 for ($x = 1; $x <= $numLinhas; $x++) {
     #pré comando
@@ -69,40 +91,49 @@ for ($x = 1; $x <= $numLinhas; $x++) {
     $id = $Fetch["id"];
     echo
     "<tr class='linha'>
-    <td>" .
+    <td class='cell'>" .
     $Fetch["id"] .
     "</td>
-    <td>" .
+    <td class='cell'>" .
     $Fetch["Nome"] .
     "</td>
-    <td>" .
+    <td class='cell'>" .
     $Fetch["votos"] .
     "</td>
     <td>".
-    "<button id='botao' onclick='atualizar($id)'>atualizar</button>".
-    "</td
+    "<input type='radio' name='selected' value='$id'".
+    "</td>
     </tr>";
   }
-echo "</table>";
+echo"<tr class='linha'> <td id='ConCell' colspan='4'>".
+    "<input type='submit' value='Confirmar' id='confirmar'>".
+    "</td> </tr>".
+    "</table>
+    </form>";
 
 ?>
-<script>
-  function atualizar(x){
-  jQuery.ajax({
-    type: "POST",
-    url: 'admin.php',
-    dataType: 'json',
-    data: {functionname: 'idupdate', arguments: [x]}
-  })
-
-  }
-</script>
 
 <div id="update">
   <form>
-    <label for="nome">nome:</label>
-    <input type="text" name="nome" id="nome">
-    <label ><span id="labelid">Id: &nbsp; <?php  echo$id; ?></span></label>
-
+    <table>
+      <tr>
+        <td>
+          <label for="nome">nome:</label>
+        </td>
+        <td>
+          <input type="text" name="nome" id="Nome">
+        </td>
+      </tr>
+      <tr>
+        <td id='labelid'>
+          <label for="id">id:</label>
+        </td>
+        <td>
+          <?php
+            echo $_POST["selected"];
+          ?>
+        </td>
+      </tr>
+    </table>
   </form>
 </div>

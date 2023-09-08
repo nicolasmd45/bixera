@@ -111,10 +111,14 @@ echo"<tr class='linha'> <td id='ConCell' colspan='4'>".
     "</table>
     </form>";
 
+
+  //funciton edit
+  edit($_POST["selected"], $_POST["nome"]);
 ?>
 
 <div id="update">
-  <form>
+
+  <form action="admin.php" method="post">
     <table>
       <tr>
         <td>
@@ -126,12 +130,17 @@ echo"<tr class='linha'> <td id='ConCell' colspan='4'>".
       </tr>
       <tr>
         <td id='labelid'>
-          <label for="id">id:</label>
+          <label>id:</label>
         </td>
         <td>
           <?php
             echo $_POST["selected"];
           ?>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="submit" value="atualizar">
         </td>
       </tr>
     </table>

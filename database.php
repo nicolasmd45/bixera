@@ -1,18 +1,18 @@
 
 <?php
 session_start();
-$servername = "sql300.epizy.com";
-$username = "epiz_33958675";
-$password = "XR7yzygTix";
+$servername = "sql106.infinityfree.com";
+$username = "epiz_33701965";
+$password = "NaqaFYS7DsHhJmz";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, "epiz_33958675_perfis");
+$conn = new mysqli($servername, $username, $password, "epiz_33701965_perfis");
 
 // Check connection
 if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+  die("conexão perfis não conectada: " . $conn->connect_error);
 }
-echo "Connected successfully";
+echo "database perfis conectada";
 echo "<br>";
 
   //id01
@@ -150,6 +150,16 @@ function updec($id){
   $supd = $_SESSION["id$id"] - 1;
   $upd = "UPDATE dados SET votos = $supd WHERE id=$id";
   $rupd = mysqli_query($conn, $upd);
+}
+
+
+
+//função admin
+function edit($i, $txt){
+// $i= id desejado
+//txt = nome desejado
+$sql = "UPDATE dados SET nome = $txt WHERE id=$i";
+$resultsql = mysqli_query($conn, $sql);
 }
 
 ?>
